@@ -262,4 +262,103 @@
     <!-- Ecosia -->
     <div class="engine-info" id="ecosia-info">
       <h2 class="engine-name">Ecosia</h2>
-      <div class="info-card
+      <div class="info-card">
+        <h3>Interface</h3>
+        <p>Design verde, contador de árvores plantadas, ícones naturais.</p>
+      </div>
+      <div class="info-card">
+        <h3>Particularidades</h3>
+        <p>80% dos lucros financiam reflorestamento. Transparência total nas finanças.</p>
+      </div>
+      <div class="info-card">
+        <h3>Tipo de pesquisa</h3>
+        <p>Texto, voz, imagem, notícias ambientais.</p>
+      </div>
+      <div class="info-card">
+        <h3>Funcionamento</h3>
+        <p>Parceiro da Bing, mas com missão ecológica — cada busca planta uma árvore.</p>
+      </div>
+    </div>
+
+    <!-- Brave Search -->
+    <div class="engine-info" id="brave-info">
+      <h2 class="engine-name">Brave Search</h2>
+      <div class="info-card">
+        <h3>Interface</h3>
+        <p>Limpa, integrada ao navegador Brave, sem anúncios intrusivos.</p>
+      </div>
+      <div class="info-card">
+        <h3>Particularidades</h3>
+        <p>Focado em privacidade, não vende dados, constrói seu próprio índice.</p>
+      </div>
+      <div class="info-card">
+        <h3>Tipo de pesquisa</h3>
+        <p>Texto, voz, imagem, notícias, vídeos.</p>
+      </div>
+      <div class="info-card">
+        <h3>Funcionamento</h3>
+        <p>Utiliza um índice próprio, sem depender do Google ou Bing.</p>
+      </div>
+    </div>
+
+    <!-- Final -->
+    <div class="story" id="story-final" style="display:none;">
+      <p><strong>Personagem:</strong> “Você viu todos. Google, Bing, DuckDuckGo, Ecosia, Brave. Cada um oferece um caminho diferente para o conhecimento. Escolher conscientemente é o primeiro passo para uma navegação digital ética.”</p>
+      <p style="margin-top: 2rem; font-style: italic;">— O Guardião da Busca desaparece lentamente na sombra —</p>
+      <button class="btn-start" onclick="location.reload()">Reiniciar Jornada</button>
+    </div>
+
+  </div>
+
+  <footer>
+    Trabalho Individual | UC00279 – Motores de Pesquisa | 2025
+  </footer>
+
+  <script>
+    let currentStep = 0;
+    const steps = [
+      { id: 'story-intro', light: true, character: true },
+      { id: 'google-info', light: true, character: true },
+      { id: 'bing-info', light: true, character: true },
+      { id: 'duckduckgo-info', light: true, character: true },
+      { id: 'ecosia-info', light: true, character: true },
+      { id: 'brave-info', light: true, character: true },
+      { id: 'story-final', light: true, character: false }
+    ];
+
+    function turnOnLight() {
+      document.getElementById('light').classList.add('on');
+      document.getElementById('character').classList.add('visible');
+      showStep(0);
+    }
+
+    function showStep(index) {
+      if (index >= steps.length) return;
+
+      // Esconde tudo
+      document.querySelectorAll('.story, .engine-info').forEach(el => el.classList.remove('active'));
+      document.getElementById('story-final').style.display = 'none';
+
+      // Mostra o atual
+      const step = steps[index];
+      if (step.id === 'story-final') {
+        document.getElementById(step.id).style.display = 'block';
+      } else {
+        document.getElementById(step.id).classList.add('active');
+      }
+
+      // Atualiza botão
+      const btn = document.querySelector('.btn-start');
+      if (index < steps.length - 1) {
+        btn.textContent = "Próximo";
+        btn.onclick = () => showStep(index + 1);
+      } else {
+        btn.textContent = "Reiniciar";
+        btn.onclick = () => location.reload();
+      }
+
+      currentStep = index;
+    }
+  </script>
+</body>
+</html>
